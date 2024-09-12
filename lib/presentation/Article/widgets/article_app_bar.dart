@@ -15,7 +15,7 @@ class _ArticleAppBarState extends State<ArticleAppBar> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SliverAppBar(
-      collapsedHeight: size.height * 0.15,
+      collapsedHeight: size.height * 0.12,
       pinned: true,
       floating: true,
       leading: Padding(
@@ -30,7 +30,7 @@ class _ArticleAppBarState extends State<ArticleAppBar> {
       ),
       actions: const [AppBarIcon(icon: Icons.bookmark_outline_outlined)],
       leadingWidth: 40,
-      backgroundColor: AppColors.primaryLight,
+      backgroundColor: AppColors.primaryDark,
       iconTheme: const IconThemeData(color: Colors.white),
       expandedHeight: size.height * 0.4,
       flexibleSpace: FlexibleSpaceBar(
