@@ -1,0 +1,155 @@
+import 'package:flutter/material.dart';
+
+class SliderItem extends StatelessWidget {
+  const SliderItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(5),
+      child: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 400,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                "assets/images/bg_intro.jpg",
+                fit: BoxFit.cover,
+                color: const Color.fromARGB(100, 0, 0, 0),
+                colorBlendMode: BlendMode.multiply,
+              ),
+            ),
+          ),
+          Positioned(
+            left: 20,
+            top: 20,
+            child: Container(
+              alignment: Alignment.center,
+              width: 100,
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.white,
+              ),
+              child: const Text(
+                'Trending',
+                style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 60,
+            left: 20,
+            child: Container(
+              width: 250,
+              child: Text(
+                  maxLines: 2,
+                  'Loi de finances 2024 les derniere nouveauté depuis grant thornton',
+                  style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      height: 1.1,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white)),
+            ),
+          ),
+          Positioned(
+            bottom: 30,
+            left: 20,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 250,
+                  child: Text('Grant thornton',
+                      maxLines: 2,
+                      style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          height: 1.1,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey)),
+                ),
+                Text('01 01 2025',
+                    maxLines: 2,
+                    style: TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        height: 1.1,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey)),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+/*
+
+
+Stack(
+      children: [
+        Container(
+          width: double.infinity,
+          height: 250,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            backgroundBlendMode: BlendMode.multiply,
+            borderRadius: BorderRadius.circular(10),
+            image: const DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage(
+                "assets/images/bg_2.jpg",
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          left: 20,
+          top: 20,
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 5),
+            width: 100,
+            height: 30,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.white,
+            ),
+            child: const Text(
+              'Trending',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 20,
+          left: 20,
+          child: Text(
+            'Loi de finances 2024',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        )
+      ],
+    );
+
+
+ */
