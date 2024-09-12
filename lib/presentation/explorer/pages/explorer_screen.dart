@@ -13,46 +13,39 @@ class ExplorerScreen extends StatefulWidget {
 class _ExplorerScreenState extends State<ExplorerScreen> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
         body: SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(size.width * 0.02),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text('Discover',
+              const Text('Discover',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 35,
                     fontWeight: FontWeight.w700,
                   )),
-              Text('Daily financial news',
+              const Text('Daily financial news',
                   style: TextStyle(
                     color: Colors.black45,
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                   )),
               SizedBox(
-                height: 10,
+                height: size.height * 0.01,
               ),
-              CustomSearchBar(),
+              const CustomSearchBar(),
               SizedBox(
-                height: 15,
+                height: size.height * 0.01,
               ),
-              ExplorerItems(),
+              const ExplorerItems(),
               SizedBox(
-                height: 40,
+                height: size.height * 0.04,
               ),
-              HomeList()
+              const HomeList()
             ],
           ),
         ),

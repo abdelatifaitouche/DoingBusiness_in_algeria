@@ -12,19 +12,20 @@ class HomeItem extends StatefulWidget {
 class _HomeItemState extends State<HomeItem> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
         Get.to(ArticleScreen());
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
+        margin: EdgeInsets.symmetric(vertical: size.height * 0.01),
         width: double.infinity,
-        height: 120,
+        height: size.height * 0.12,
         child: Row(
           children: [
             Container(
-              width: 120,
-              height: 120,
+              width: size.width * 0.27,
+              height: size.height * 0.12,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -48,10 +49,10 @@ class _HomeItemState extends State<HomeItem> {
                         fontWeight: FontWeight.w400,
                         color: Colors.grey)),
                 SizedBox(
-                  height: 10,
+                  height: size.height * 0.01,
                 ),
                 Container(
-                  width: 250,
+                  width: size.width * 0.65,
                   child: Text(
                       maxLines: 2,
                       'Loi de finances 2024 les derniere nouveauté depuis grant thornton',
@@ -63,16 +64,16 @@ class _HomeItemState extends State<HomeItem> {
                           color: Colors.black)),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: size.height * 0.01,
                 ),
                 Container(
-                  width: 260,
+                  width: size.width * 0.65,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Image(
                         image: AssetImage('assets/images/logo_gt.png'),
-                        width: 20,
+                        width: size.width * 0.05,
                       ),
                       Text('GrantThornton .',
                           style: TextStyle(

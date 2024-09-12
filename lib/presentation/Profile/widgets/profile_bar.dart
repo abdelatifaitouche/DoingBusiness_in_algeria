@@ -1,5 +1,7 @@
 import 'package:doingbusiness/core/configs/theme/app_colors.dart';
+import 'package:doingbusiness/presentation/explorer/pages/explorer_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileAppBar extends StatelessWidget {
   const ProfileAppBar({super.key});
@@ -62,13 +64,16 @@ class ProfileAppBar extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                const Text(
-                  'Explore',
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400),
-                  textAlign: TextAlign.center,
+                GestureDetector(
+                  onTap: () => Get.to(ExplorerScreen()),
+                  child: Text(
+                    'Explorer',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ],
             ),

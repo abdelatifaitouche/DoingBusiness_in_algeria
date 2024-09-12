@@ -6,21 +6,22 @@ class SavedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(size.width * 0.02),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Saved',
+                const Text('Saved',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 35,
                       fontWeight: FontWeight.w700,
                     )),
-                Text(
+                const Text(
                   'Explore your saved Articles',
                   style: TextStyle(
                     color: Colors.black45,
@@ -29,9 +30,9 @@ class SavedScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: size.height * 0.03,
                 ),
-                HomeList()
+                const HomeList()
               ],
             ),
           ),

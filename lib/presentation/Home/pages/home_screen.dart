@@ -1,7 +1,6 @@
 import 'package:doingbusiness/presentation/Home/widgets/home_header.dart';
 import 'package:doingbusiness/presentation/Home/widgets/home_list.dart';
 import 'package:doingbusiness/presentation/Home/widgets/home_slider.dart';
-import 'package:doingbusiness/presentation/explorer/pages/explorer_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,10 +13,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
         body: SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(size.width * 0.02),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,13 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
               /*HOME HEADER */
               HomeHeader(),
               SizedBox(
-                height: 20,
+                height: size.height * 0.02,
               ),
 
               /*HOME SLIDER */
               HomeSlider(),
               SizedBox(
-                height: 20,
+                height: size.height * 0.02,
               ),
               /* SEPARATE TITLEs */
               Row(
@@ -42,24 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       )),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ExplorerScreen()),
-                      );
-                    },
-                    child: Text("See More",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey)),
-                  ),
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: size.height * 0.02,
               ),
 
               /*HOME ITEMS */

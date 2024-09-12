@@ -8,11 +8,12 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
         body: SingleChildScrollView(
       child: SafeArea(
         child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(size.width * 0.02),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -29,15 +30,15 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 50,
+                  height: size.height * 0.05,
                 ),
                 Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        width: 70,
-                        height: 70,
+                        width: size.width * 0.17,
+                        height: size.height * 0.07,
                         child: CircleAvatar(
                           backgroundColor: Colors.transparent,
                           backgroundImage:
@@ -45,7 +46,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: size.height * 0.01,
                       ),
                       Text(
                         'Rafik boussa',
@@ -66,18 +67,18 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: size.height * 0.03,
                 ),
                 Center(child: ProfileAppBar()),
                 SizedBox(
-                  height: 30,
+                  height: size.height * 0.03,
                 ),
                 Text(
                   'Account Informations',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: size.height * 0.01,
                 ),
                 InfoWidget(
                   widgetColor: AppColors.mediumGreen,
@@ -86,14 +87,14 @@ class ProfileScreen extends StatelessWidget {
                   widgetTitle: 'email',
                 ),
                 SizedBox(
-                  height: 30,
+                  height: size.height * 0.03,
                 ),
                 Text(
                   'App Settings',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: size.height * 0.01,
                 ),
                 InfoWidget(
                   widgetColor: AppColors.primaryLight,

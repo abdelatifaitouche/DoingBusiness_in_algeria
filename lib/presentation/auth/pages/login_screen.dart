@@ -6,28 +6,29 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 60,
-            horizontal: 40,
+          padding: EdgeInsets.symmetric(
+            vertical: size.height * 0.08,
+            horizontal: size.width * 0.08,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Align(
+              Align(
                 alignment: Alignment.topLeft,
                 child: Row(
                   children: [
                     Image(
-                      image: AssetImage('assets/images/logo_gt.png'),
-                      height: 50,
+                      image: const AssetImage('assets/images/logo_gt.png'),
+                      height: size.width * 0.1,
                     ),
                     SizedBox(
-                      width: 10,
+                      width: size.width * 0.01,
                     ),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -54,9 +55,9 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: size.height * 0.18,
               ),
-              Text(
+              const Text(
                 "Hey",
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
@@ -65,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                   fontSize: 25,
                 ),
               ),
-              Text(
+              const Text(
                 "Connectez vous !!",
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
@@ -75,33 +76,27 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: size.height * 0.05,
               ),
               Column(
                 children: [
-                  TextField(
+                  const TextField(
                       decoration: InputDecoration(
-                    icon: Icon(Icons.email), //icon at head of input
-                    //prefixIcon: Icon(Icons.people), //you can use prefixIcon property too
-                    //prefisIcon sets Icon inside the TextField border, 'icon' sets outside border.
-
-                    //icon at tail of input
+                    icon: Icon(Icons.email),
                   )),
                   SizedBox(
-                    height: 30,
+                    height: size.height * 0.03,
                   ),
-                  TextField(
+                  const TextField(
                       decoration: InputDecoration(
-                          icon: Icon(Icons.lock), //icon at head of input
-                          //prefixIcon: Icon(Icons.people), //you can use prefixIcon property too
-                          //prefisIcon sets Icon inside the TextField border, 'icon' sets outside border.
+                          icon: Icon(Icons.lock),
                           suffixIcon:
                               Icon(Icons.remove_red_eye) //icon at tail of input
                           )),
                   SizedBox(
-                    height: 30,
+                    height: size.height * 0.03,
                   ),
-                  Text(
+                  const Text(
                     "mot de passe oublié",
                     textAlign: TextAlign.right,
                     style: TextStyle(
@@ -112,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: size.height * 0.03,
                   ),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -122,7 +117,7 @@ class LoginScreen extends StatelessWidget {
                         minimumSize: const Size(260, 60),
                       ),
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         "Login Now",
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.w500),
@@ -130,9 +125,9 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 50,
+                height: size.height * 0.05,
               ),
-              Text(
+              const Text(
                 "Vous n'avez pas de compte? Creez un ",
                 textAlign: TextAlign.right,
                 style: TextStyle(

@@ -5,13 +5,14 @@ class SliderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.all(5),
+      margin: EdgeInsets.all(size.width * 0.01),
       child: Stack(
         children: [
           Container(
             width: double.infinity,
-            height: 400,
+            height: size.height * 0.45,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -30,8 +31,8 @@ class SliderItem extends StatelessWidget {
             top: 20,
             child: Container(
               alignment: Alignment.center,
-              width: 100,
-              height: 30,
+              width: size.width * 0.25,
+              height: size.height * 0.03,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 color: Colors.white,
@@ -50,7 +51,7 @@ class SliderItem extends StatelessWidget {
             bottom: 60,
             left: 20,
             child: Container(
-              width: 250,
+              width: size.width * 0.7,
               child: Text(
                   maxLines: 2,
                   'Loi de finances 2024 les derniere nouveauté depuis grant thornton',

@@ -7,9 +7,10 @@ class HomeSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return CarouselSlider.builder(
       options: CarouselOptions(
-          height: 400.0,
+          height: size.height * 0.45,
           viewportFraction: 1,
           enlargeFactor: 0.5,
           autoPlay: true),

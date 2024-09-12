@@ -6,13 +6,14 @@ class ExplorerItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
           alignment: Alignment.center,
-          width: 80,
-          height: 40,
+          width: size.width * 0.18,
+          height: size.height * 0.04,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             color: AppColors.primaryDark,
@@ -26,8 +27,8 @@ class ExplorerItems extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.center,
-          width: 80,
-          height: 40,
+          width: size.width * 0.18,
+          height: size.height * 0.04,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             color: Color.fromARGB(255, 187, 187, 187),
@@ -41,8 +42,8 @@ class ExplorerItems extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.center,
-          width: 80,
-          height: 40,
+          width: size.width * 0.18,
+          height: size.height * 0.04,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             color: Color.fromARGB(255, 187, 187, 187),
@@ -56,8 +57,8 @@ class ExplorerItems extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.center,
-          width: 80,
-          height: 40,
+          width: size.width * 0.18,
+          height: size.height * 0.04,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             color: Color.fromARGB(255, 187, 187, 187),

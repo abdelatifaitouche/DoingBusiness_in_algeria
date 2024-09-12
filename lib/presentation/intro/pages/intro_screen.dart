@@ -2,20 +2,31 @@ import 'package:doingbusiness/common/widgets/basic_app_button.dart';
 import 'package:doingbusiness/presentation/auth/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-class GetStartedPage extends StatelessWidget {
+class GetStartedPage extends StatefulWidget {
   const GetStartedPage({super.key});
 
   @override
+  State<GetStartedPage> createState() => _GetStartedPageState();
+}
+
+class _GetStartedPageState extends State<GetStartedPage> {
+  // the first time this page loads up``
+  GetStorage storage = GetStorage();
+  @override
+  void initState() {
+    super.initState();
+    storage.write('isShown', true);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: 40,
-              horizontal: 40,
-            ),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
@@ -26,27 +37,27 @@ class GetStartedPage extends StatelessWidget {
             ),
           ),
           Container(
-            color: Colors.black.withOpacity(0.35),
+            color: Colors.black.withOpacity(0.5),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 60,
-              horizontal: 40,
+            padding: EdgeInsets.symmetric(
+              vertical: size.height * 0.09,
+              horizontal: size.width * 0.1,
             ),
             child: Column(
               children: [
-                const Align(
+                Align(
                   alignment: Alignment.topLeft,
                   child: Row(
                     children: [
                       Image(
-                        image: AssetImage('assets/images/logo_gt.png'),
-                        height: 50,
+                        image: const AssetImage('assets/images/logo_gt.png'),
+                        height: size.width * 0.12,
                       ),
                       SizedBox(
-                        width: 10,
+                        width: size.width * 0.01,
                       ),
-                      Column(
+                      const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -74,16 +85,28 @@ class GetStartedPage extends StatelessWidget {
                 ),
                 const Spacer(),
                 const Text(
-                  "Restez a la pointe de l'actualité financieres ",
+                  "Doing Business",
                   style: TextStyle(
                     fontWeight: FontWeight.w900,
                     color: Colors.white,
-                    height: 1.02,
+                    height: 0.8,
                     fontSize: 45,
                   ),
                 ),
-                const SizedBox(
-                  height: 50,
+                SizedBox(
+                  height: 5,
+                ),
+                const Text(
+                  "Restez a la pointe de l'actualité financieres",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w200,
+                    color: Colors.white,
+                    height: 1.02,
+                    fontSize: 30,
+                  ),
+                ),
+                SizedBox(
+                  height: size.width * 0.2,
                 ),
                 BasicAppButton(
                     onPressed: () {
