@@ -3,7 +3,6 @@ import 'package:doingbusiness/presentation/auth/pages/email_verification.dart';
 import 'package:doingbusiness/presentation/auth/pages/login_screen.dart';
 import 'package:doingbusiness/presentation/intro/pages/intro_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -36,9 +35,7 @@ class AuthenticationRepository extends GetxController {
         Get.offAll(const GetStartedPage());
       }
 
-      isShown
-          ? Get.offAll(const LoginScreen())
-          : Get.offAll(const GetStartedPage());
+      isShown ? Get.offAll(LoginScreen()) : Get.offAll(const GetStartedPage());
     }
   }
 
@@ -51,6 +48,20 @@ class AuthenticationRepository extends GetxController {
       throw e.code;
     } on FirebaseException catch (e) {
       throw e.code;
+    }
+  }
+
+  //Login with email and password
+
+  Future<UserCredential> loginWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      throw e.message.toString();
+    } catch (e) {
+      throw 'something went wrong';
     }
   }
 
@@ -68,9 +79,9 @@ class AuthenticationRepository extends GetxController {
   Future<void> logout() async {
     try {
       await FirebaseAuth.instance.signOut();
-      Get.offAll(const LoginScreen());
+      Get.offAll(LoginScreen());
     } catch (e) {
-      throw 'something went wrong';
+      throw e.toString();
     }
   }
 }

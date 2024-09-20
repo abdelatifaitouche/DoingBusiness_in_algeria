@@ -4,7 +4,6 @@ import 'package:doingbusiness/presentation/auth/controllers/authentication_repos
 import 'package:doingbusiness/utils/loaders/loaders.dart';
 import 'package:doingbusiness/utils/pages/success_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 
 class EmailVerificationController extends GetxController {

@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:doingbusiness/core/configs/theme/app_colors.dart';
+import 'package:doingbusiness/presentation/auth/controllers/signin_controller.dart';
 import 'package:doingbusiness/presentation/auth/pages/signup_screen.dart';
+import 'package:doingbusiness/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +12,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SignInController controller = Get.put(SignInController());
+
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
@@ -82,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                     child: Container(
                       width: 400,
                       height: 500,
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         color: Colors.black.withOpacity(0.4),
                         borderRadius: BorderRadius.circular(20),
@@ -111,63 +115,88 @@ class LoginScreen extends StatelessWidget {
                           SizedBox(
                             height: size.height * 0.05,
                           ),
-                          Column(
-                            children: [
-                              const TextField(
-                                  decoration: InputDecoration(
-                                icon: Icon(
-                                  Icons.email,
-                                  color: Colors.white,
-                                ),
-                              )),
-                              SizedBox(
-                                height: size.height * 0.03,
-                              ),
-                              const TextField(
-                                  decoration: InputDecoration(
-                                      fillColor: Colors.white,
+                          Form(
+                            key: controller.siginKey,
+                            child: Column(
+                              children: [
+                                TextFormField(
+                                    controller: controller.email,
+                                    validator: (value) {
+                                      FieldsValidators.validatingEmail(value);
+                                    },
+                                    decoration: const InputDecoration(
                                       icon: Icon(
-                                        Icons.lock,
+                                        Icons.email,
                                         color: Colors.white,
                                       ),
-                                      suffixIcon: Icon(
-                                        Icons.remove_red_eye,
-                                        color: Colors.white,
-                                      ) //icon at tail of input
-                                      )),
-                              SizedBox(
-                                height: size.height * 0.03,
-                              ),
-                              const Text(
-                                "mot de passe oublié",
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black45,
-                                  height: 1.02,
-                                  fontSize: 16,
+                                    )),
+                                SizedBox(
+                                  height: size.height * 0.03,
                                 ),
-                              ),
-                              SizedBox(
-                                height: size.height * 0.03,
-                              ),
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.primaryDark,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5)),
-                                    minimumSize: const Size(260, 60),
+                                Obx(
+                                  () => TextFormField(
+                                    controller: controller.password,
+                                    validator: (value) {
+                                      FieldsValidators.validatingField(
+                                          "Password", value);
+                                    },
+                                    obscureText: controller.hidePassword.value,
+                                    decoration: InputDecoration(
+                                        fillColor: Colors.white,
+                                        icon: Icon(
+                                          Icons.lock,
+                                          color: Colors.white,
+                                        ),
+                                        suffixIcon: IconButton(
+                                          onPressed: () => controller
+                                                  .hidePassword.value =
+                                              !controller.hidePassword.value,
+                                          icon: controller.hidePassword.value
+                                              ? Icon(Icons.remove_red_eye)
+                                              : Icon(Icons
+                                                  .remove_red_eye_outlined),
+                                          color: Colors.white,
+                                        ) //icon at tail of input
+                                        ),
                                   ),
-                                  onPressed: () {},
-                                  child: const Text(
-                                    "Login Now",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        letterSpacing: 1.1,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500),
-                                  ))
-                            ],
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.03,
+                                ),
+                                const Text(
+                                  "mot de passe oublié",
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black45,
+                                    height: 1.02,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.03,
+                                ),
+                                ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.primaryDark,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      minimumSize: const Size(260, 60),
+                                    ),
+                                    onPressed: () {
+                                      controller.signIn();
+                                    },
+                                    child: const Text(
+                                      "Login Now",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          letterSpacing: 1.1,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500),
+                                    ))
+                              ],
+                            ),
                           ),
                           SizedBox(
                             height: size.height * 0.05,

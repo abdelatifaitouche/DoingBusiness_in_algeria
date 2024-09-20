@@ -14,8 +14,6 @@ class SplashController extends GetxController {
       Get.offAll(const GetStartedPage());
     }
 
-    isShown
-        ? Get.offAll(const LoginScreen())
-        : Get.offAll(const GetStartedPage());
+    isShown ? Get.offAll(LoginScreen()) : Get.offAll(const GetStartedPage());
   }
 }

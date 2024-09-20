@@ -1,6 +1,5 @@
 import 'package:doingbusiness/bindings/general_bindings.dart';
 import 'package:doingbusiness/presentation/splash/pages/splash_screen.dart';
-import 'package:doingbusiness/utils/pages/success_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
