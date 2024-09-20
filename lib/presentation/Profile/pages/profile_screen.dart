@@ -1,6 +1,7 @@
 import 'package:doingbusiness/core/configs/theme/app_colors.dart';
 import 'package:doingbusiness/presentation/Profile/widgets/info_widget.dart';
 import 'package:doingbusiness/presentation/Profile/widgets/profile_bar.dart';
+import 'package:doingbusiness/presentation/auth/controllers/authentication_repository.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -102,6 +103,11 @@ class ProfileScreen extends StatelessWidget {
                   widgetText: 'Light',
                   widgetTitle: 'light Mode',
                 ),
+                GestureDetector(
+                    onTap: () {
+                      AuthenticationRepository.instance.logout();
+                    },
+                    child: Text('logout'))
               ],
             )),
       ),

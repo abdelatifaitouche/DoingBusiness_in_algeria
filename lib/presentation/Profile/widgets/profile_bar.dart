@@ -20,9 +20,9 @@ class ProfileAppBar extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Image.asset(
-              "assets/images/bg_profile.jpg",
+              "assets/images/3d_bg.jpg",
               fit: BoxFit.cover,
-              color: const Color.fromARGB(100, 0, 0, 0),
+              color: const Color.fromARGB(150, 0, 0, 0),
               colorBlendMode: BlendMode.multiply,
             ),
           ),

@@ -1,5 +1,5 @@
+import 'package:doingbusiness/presentation/auth/controllers/authentication_repository.dart';
 import 'package:doingbusiness/presentation/intro/pages/intro_screen.dart';
-import 'package:doingbusiness/presentation/splash/controllers/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,12 +11,12 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  SplashController controller = Get.put(SplashController());
+  AuthenticationRepository controller = Get.put(AuthenticationRepository());
 
   @override
   void initState() {
     super.initState();
-    controller.switchScreen();
+    controller.screenRedirect();
   }
 
   @override

@@ -31,13 +31,13 @@ class _GetStartedPageState extends State<GetStartedPage> {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage(
-                  "assets/images/bg_intro.jpg",
+                  "assets/images/3d_bg.jpg",
                 ),
               ),
             ),
           ),
           Container(
-            color: Colors.black.withOpacity(0.5),
+            color: Colors.black.withOpacity(0.6),
           ),
           Padding(
             padding: EdgeInsets.symmetric(
