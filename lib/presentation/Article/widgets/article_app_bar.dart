@@ -1,16 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:doingbusiness/core/configs/theme/app_colors.dart';
+import 'package:doingbusiness/presentation/Article/models/article_model.dart';
 import 'package:doingbusiness/presentation/Article/widgets/app_bar_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ArticleAppBar extends StatefulWidget {
-  const ArticleAppBar({super.key});
+class ArticleAppBar extends StatelessWidget {
+  const ArticleAppBar({super.key, required this.article});
+  final ArticleModel article;
 
-  @override
-  State<ArticleAppBar> createState() => _ArticleAppBarState();
-}
-
-class _ArticleAppBarState extends State<ArticleAppBar> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -41,8 +39,8 @@ class _ArticleAppBarState extends State<ArticleAppBar> {
         background: Stack(
           children: [
             Positioned.fill(
-              child: Image.asset(
-                'assets/images/bg_intro.jpg',
+              child: Image(
+                image: CachedNetworkImageProvider(article.imageUrl),
                 fit: BoxFit.cover,
               ),
             ),
@@ -82,9 +80,9 @@ class _ArticleAppBarState extends State<ArticleAppBar> {
                   ),
                   Container(
                     width: 300,
-                    child: const Text(
+                    child: Text(
                         maxLines: 3,
-                        'Loi de finances 2024 les derniere nouveauté depuis grant thornton',
+                        article.titre,
                         style: TextStyle(
                             overflow: TextOverflow.ellipsis,
                             height: 1.1,

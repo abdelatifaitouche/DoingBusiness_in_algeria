@@ -30,6 +30,10 @@ class AnimationLoader extends StatelessWidget {
           ),
           Text(
             text,
+            style: TextStyle(
+              fontSize: 22,
+              color: Colors.black,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(

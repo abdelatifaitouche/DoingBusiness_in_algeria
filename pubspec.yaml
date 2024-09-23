@@ -44,6 +44,8 @@ dependencies:
   lottie: ^3.1.2
   connectivity_plus: ^6.0.5
   firebase_core: ^3.5.0
+  shimmer: ^3.0.0
+  cached_network_image: ^3.4.1
   
 
 dev_dependencies:

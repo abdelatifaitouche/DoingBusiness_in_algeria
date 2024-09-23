@@ -1,21 +1,20 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:doingbusiness/presentation/Article/models/article_model.dart';
 import 'package:doingbusiness/presentation/Article/pages/article_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeItem extends StatefulWidget {
-  const HomeItem({super.key});
-
-  @override
-  State<HomeItem> createState() => _HomeItemState();
-}
-
-class _HomeItemState extends State<HomeItem> {
+class HomeItem extends StatelessWidget {
+  const HomeItem({super.key, required this.article});
+  final ArticleModel article;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        Get.to(ArticleScreen());
+        Get.to(ArticleScreen(
+          article: article,
+        ));
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: size.height * 0.01),
@@ -31,8 +30,8 @@ class _HomeItemState extends State<HomeItem> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  "assets/images/bg_intro.jpg",
+                child: Image(
+                  image: CachedNetworkImageProvider(article.imageUrl),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -55,7 +54,7 @@ class _HomeItemState extends State<HomeItem> {
                   width: size.width * 0.65,
                   child: Text(
                       maxLines: 2,
-                      'Loi de finances 2024 les derniere nouveauté depuis grant thornton',
+                      article.titre,
                       style: TextStyle(
                           overflow: TextOverflow.ellipsis,
                           height: 1.1,

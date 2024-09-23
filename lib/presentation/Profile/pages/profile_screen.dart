@@ -2,6 +2,7 @@ import 'package:doingbusiness/core/configs/theme/app_colors.dart';
 import 'package:doingbusiness/presentation/Profile/widgets/info_widget.dart';
 import 'package:doingbusiness/presentation/Profile/widgets/profile_bar.dart';
 import 'package:doingbusiness/presentation/auth/controllers/authentication_repository.dart';
+import 'package:doingbusiness/presentation/auth/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -10,6 +11,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final userController = UserController.instance;
     return Scaffold(
         body: SingleChildScrollView(
       child: SafeArea(
@@ -50,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
                         height: size.height * 0.01,
                       ),
                       Text(
-                        'Rafik boussa',
+                        userController.user.value.username,
                         style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
@@ -84,7 +86,7 @@ class ProfileScreen extends StatelessWidget {
                 InfoWidget(
                   widgetColor: AppColors.mediumGreen,
                   widgetIcon: Icons.email_rounded,
-                  widgetText: 'boussa.rafik@gt.dz.com',
+                  widgetText: userController.user.value.email,
                   widgetTitle: 'email',
                 ),
                 SizedBox(
