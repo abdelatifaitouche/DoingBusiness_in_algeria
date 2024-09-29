@@ -23,7 +23,9 @@ class ArticleScreen extends StatelessWidget {
                       article: article,
                     )),
                   ),
-                  PlayWidget(),
+                  PlayWidget(
+                    articleModel: article,
+                  ),
                 ],
               ),
             ),

@@ -1,5 +1,7 @@
 import 'package:doingbusiness/presentation/Home/widgets/home_list.dart';
+import 'package:doingbusiness/presentation/saved/%20controllers/saved_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SavedScreen extends StatelessWidget {
   const SavedScreen({super.key});
@@ -7,6 +9,7 @@ class SavedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final controller = Get.put(SavedController());
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -32,7 +35,16 @@ class SavedScreen extends StatelessWidget {
                 SizedBox(
                   height: size.height * 0.03,
                 ),
-                const HomeList()
+                Obx(
+                  () => ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: controller.savedArticles.length,
+                      itemBuilder: (BuildContext context, index) {
+                        final article = controller.savedArticles[index];
+                        return ListTile(title: Text(article.titre));
+                      }),
+                )
               ],
             ),
           ),

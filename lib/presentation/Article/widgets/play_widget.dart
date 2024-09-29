@@ -1,7 +1,12 @@
+import 'package:doingbusiness/presentation/Article/models/article_model.dart';
+import 'package:doingbusiness/presentation/Article/pages/article_pdf.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PlayWidget extends StatelessWidget {
-  const PlayWidget({super.key});
+  const PlayWidget({super.key, required this.articleModel});
+
+  final ArticleModel articleModel;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,11 @@ class PlayWidget extends StatelessWidget {
         ),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Text("Lire l'article", style: TextStyle(fontSize: 16)),
-          Icon(Icons.play_circle_fill_outlined)
+          GestureDetector(
+              onTap: () => Get.to(
+                    ArticlePdf(articleModel: articleModel),
+                  ),
+              child: Icon(Icons.play_circle_fill_outlined))
         ]),
       ),
     );

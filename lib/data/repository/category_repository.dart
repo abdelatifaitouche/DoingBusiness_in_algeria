@@ -18,6 +18,4 @@ class CategoryRepository extends GetxController {
       throw "something went south";
     }
   }
-
-  //upload categories to the cloud
 }

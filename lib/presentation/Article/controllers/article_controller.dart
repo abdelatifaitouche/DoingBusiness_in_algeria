@@ -8,12 +8,33 @@ class ArticleController extends GetxController {
 
   final isLoading = false.obs;
   RxList<ArticleModel> featuredArticles = <ArticleModel>[].obs;
+
   ArticleRepository articleRepo = Get.put(ArticleRepository());
+
+  RxList selectedCat = [].obs;
+  RxList<ArticleModel> filteredArticles = <ArticleModel>[].obs;
+  RxBool selected = false.obs;
 
   @override
   void onInit() {
     fetchFeaturedArticles();
+    resetList();
     super.onInit();
+  }
+
+  resetList() {
+    filteredArticles.value = featuredArticles;
+  }
+
+  chooseCat(String index) {
+    selectedCat.value = [];
+    selectedCat.add(index);
+    filteredArticles.value = featuredArticles
+        .where(
+          (p0) => p0.categoryId == index,
+        )
+        .toList();
+    print(selectedCat);
   }
 
   Future<void> fetchFeaturedArticles() async {
@@ -29,8 +50,6 @@ class ArticleController extends GetxController {
       //assign the articles
 
       featuredArticles.assignAll(articles);
-      print("fetched");
-      print(featuredArticles[1].titre);
     } catch (e) {
       Loaders.errorSnackBar(title: 'Oh snap', message: e.toString());
     } finally {

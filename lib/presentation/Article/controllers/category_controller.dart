@@ -1,4 +1,6 @@
+import 'package:doingbusiness/data/repository/article_repository.dart';
 import 'package:doingbusiness/data/repository/category_repository.dart';
+import 'package:doingbusiness/presentation/Article/models/article_model.dart';
 import 'package:doingbusiness/presentation/Article/models/categorie_model.dart';
 import 'package:doingbusiness/utils/loaders/loaders.dart';
 import 'package:get/get.dart';
@@ -47,4 +49,10 @@ class CategoryController extends GetxController {
   //load selected category data
 
   // get category articles
+
+  Future<List<ArticleModel>> getCategoryArticles(String categoryId) async {
+    final articles = await ArticleRepository.instance
+        .getCategoryArticles(categoryId: categoryId);
+    return articles;
+  }
 }

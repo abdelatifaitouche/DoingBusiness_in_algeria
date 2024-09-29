@@ -30,3 +30,12 @@ class MyApp extends StatelessWidget {
         home: SplashPage());
   }
 }
+
+
+/**
+ * Instead of categories, 
+ * add GT algeria branches : 
+ *  GT , AFC , Solic
+ *  Each one with a color code;
+ *  and filter articles based on the branches
+ */

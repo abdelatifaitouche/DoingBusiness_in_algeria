@@ -123,7 +123,13 @@ class LoginScreen extends StatelessWidget {
                                     validator: (value) {
                                       FieldsValidators.validatingEmail(value);
                                     },
+                                    style: const TextStyle(color: Colors.white),
                                     decoration: const InputDecoration(
+                                      fillColor: Colors.white,
+                                      hintText: "E-mail",
+                                      hintStyle: TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 129, 129, 129)),
                                       icon: Icon(
                                         Icons.email,
                                         color: Colors.white,
@@ -134,6 +140,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 Obx(
                                   () => TextFormField(
+                                    style: const TextStyle(color: Colors.white),
                                     controller: controller.password,
                                     validator: (value) {
                                       FieldsValidators.validatingField(
@@ -141,6 +148,10 @@ class LoginScreen extends StatelessWidget {
                                     },
                                     obscureText: controller.hidePassword.value,
                                     decoration: InputDecoration(
+                                        hintText: "password",
+                                        hintStyle: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 129, 129, 129)),
                                         fillColor: Colors.white,
                                         icon: Icon(
                                           Icons.lock,

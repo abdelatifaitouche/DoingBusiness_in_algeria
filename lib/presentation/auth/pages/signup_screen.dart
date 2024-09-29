@@ -1,5 +1,6 @@
 import 'package:doingbusiness/core/configs/theme/app_colors.dart';
 import 'package:doingbusiness/presentation/auth/controllers/signup_controller.dart';
+import 'package:doingbusiness/presentation/auth/pages/login_screen.dart';
 import 'package:doingbusiness/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,9 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignUpController());
+    final size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -58,7 +61,19 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 100,
+                height: 50,
+              ),
+              Text(
+                "Créer votre compte ",
+                style: TextStyle(
+                  fontWeight: FontWeight.w300,
+                  color: Colors.black,
+                  height: 1.02,
+                  fontSize: 25,
+                ),
+              ),
+              const SizedBox(
+                height: 60,
               ),
               Form(
                 key: controller.signupFormKey,
@@ -134,16 +149,36 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              const Text(
-                "Vous avez deja un compte ? connectez vous ",
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                  height: 1.02,
-                  fontSize: 16,
-                ),
-              ),
+              Row(
+                children: [
+                  const Text(
+                    "Vous avez deja un compte?",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      height: 1.02,
+                      fontSize: 14,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () => Get.to(LoginScreen()),
+                    child: const Text(
+                      "Connectez vous!!",
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primaryLight,
+                        height: 1.02,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

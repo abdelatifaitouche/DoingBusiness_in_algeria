@@ -12,9 +12,7 @@ class ArticleRepository extends GetxController {
 
   Future<List<ArticleModel>> getFeaturedArticles() async {
     try {
-      print('fetching from repo');
       final snapshot = await _db.collection('Articles').limit(4).get();
-      print('getting the snapshot');
 
       // return a list of articles
 
@@ -25,6 +23,28 @@ class ArticleRepository extends GetxController {
       throw e.message.toString();
     } catch (e) {
       throw e;
+    }
+  }
+
+  Future<List<ArticleModel>> getCategoryArticles(
+      {required String categoryId, int limit = -1}) async {
+    try {
+      final querySnapshot = limit == -1
+          ? await _db
+              .collection("Articles")
+              .where('category', isEqualTo: categoryId)
+              .get()
+          : await _db
+              .collection("Articles")
+              .where('category', isEqualTo: categoryId)
+              .limit(limit)
+              .get();
+      final articles = querySnapshot.docs
+          .map((article) => ArticleModel.fromSnapshot(article))
+          .toList();
+      return articles;
+    } catch (e) {
+      throw 'somehting went south';
     }
   }
 }

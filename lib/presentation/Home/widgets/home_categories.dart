@@ -1,3 +1,4 @@
+import 'package:doingbusiness/presentation/Article/controllers/article_controller.dart';
 import 'package:doingbusiness/presentation/Article/controllers/category_controller.dart';
 import 'package:doingbusiness/presentation/Home/widgets/category_item.dart';
 import 'package:doingbusiness/utils/loaders/category_shimmer.dart';
@@ -6,10 +7,11 @@ import 'package:get/get.dart';
 
 class HomeCategories extends StatelessWidget {
   const HomeCategories({super.key});
-
+  //category id
   @override
   Widget build(BuildContext context) {
     final categoryController = Get.put(CategoryController());
+    final controller = Get.put(ArticleController());
     return Obx(() {
       if (categoryController.isLoading.value) {
         return CategoryShimmer();
@@ -31,7 +33,9 @@ class HomeCategories extends StatelessWidget {
               return CategoryItem(
                 text: category.name,
                 selected: false,
-                onTap: () {},
+                onTap: (selected) {
+                  return selected;
+                },
               );
             }),
       );

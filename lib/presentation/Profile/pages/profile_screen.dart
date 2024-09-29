@@ -21,15 +21,13 @@ class ProfileScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.arrow_back_ios_new_outlined),
                     Text(
                       'Profile',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    Icon(Icons.settings)
                   ],
                 ),
                 SizedBox(
@@ -56,14 +54,6 @@ class ProfileScreen extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
-                            letterSpacing: 1.1),
-                      ),
-                      Text(
-                        'Student',
-                        style: TextStyle(
-                            color: Colors.black45,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
                             letterSpacing: 1.1),
                       ),
                     ],
@@ -105,11 +95,24 @@ class ProfileScreen extends StatelessWidget {
                   widgetText: 'Light',
                   widgetTitle: 'light Mode',
                 ),
-                GestureDetector(
-                    onTap: () {
-                      AuthenticationRepository.instance.logout();
-                    },
-                    child: Text('logout'))
+                SizedBox(
+                  height: 50,
+                ),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () => AuthenticationRepository.instance.logout(),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.dangerRed,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      minimumSize: const Size(260, 60),
+                    ),
+                    child: Text(
+                      'logout',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                )
               ],
             )),
       ),

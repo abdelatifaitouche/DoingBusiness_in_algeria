@@ -7,11 +7,16 @@ class CategoryItem extends StatelessWidget {
 
   final bool selected;
   final String text;
-  final VoidCallback? onTap;
+  final ValueChanged? onTap;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return GestureDetector(
+    return FilterChip(label: Text(text), onSelected: onTap);
+  }
+}
+/**
+ * 
+ * GestureDetector(
       onTap: onTap,
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 5),
@@ -30,5 +35,4 @@ class CategoryItem extends StatelessWidget {
                 fontWeight: FontWeight.w600)),
       ),
     );
-  }
-}
+ */

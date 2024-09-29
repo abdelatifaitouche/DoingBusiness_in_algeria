@@ -18,9 +18,10 @@ class UserModel {
     if (document.data() != null) {
       final data = document.data();
       return UserModel(
-          username: data!['username'] ?? '',
-          email: data['email'] ?? "",
-          id: document.id);
+        username: data!['username'] ?? '',
+        email: data['email'] ?? "",
+        id: document.id,
+      );
     } else {
       return UserModel.empty();
     }

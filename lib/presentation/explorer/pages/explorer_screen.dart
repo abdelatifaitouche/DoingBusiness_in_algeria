@@ -1,19 +1,23 @@
-import 'package:doingbusiness/presentation/Home/widgets/home_list.dart';
-import 'package:doingbusiness/presentation/explorer/widgets/explorer_items.dart';
-import 'package:flutter/material.dart';
-import 'package:doingbusiness/presentation/explorer/widgets/search_bar.dart';
+import 'package:doingbusiness/presentation/Article/controllers/article_controller.dart';
 
-class ExplorerScreen extends StatefulWidget {
+import 'package:doingbusiness/presentation/Home/widgets/home_item.dart';
+import 'package:doingbusiness/presentation/explorer/widgets/filter_bar.dart';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class ExplorerScreen extends StatelessWidget {
   const ExplorerScreen({super.key});
 
   @override
-  State<ExplorerScreen> createState() => _ExplorerScreenState();
-}
-
-class _ExplorerScreenState extends State<ExplorerScreen> {
-  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final controller = Get.put(ArticleController());
+    final categories = [
+      {'name': 'finance', 'id': '1'},
+      {'name': 'sport', 'id': '2'},
+    ];
+
     return Scaffold(
         body: SingleChildScrollView(
       child: Padding(
@@ -37,15 +41,23 @@ class _ExplorerScreenState extends State<ExplorerScreen> {
               SizedBox(
                 height: size.height * 0.01,
               ),
-              const CustomSearchBar(),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              const ExplorerItems(),
+              FilterBar(),
               SizedBox(
                 height: size.height * 0.04,
               ),
-              const HomeList()
+              Obx(
+                () => ListView.builder(
+                  itemCount: controller.filteredArticles.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    final article = controller.filteredArticles[index];
+                    return HomeItem(
+                      article: article,
+                    );
+                  },
+                ),
+              )
             ],
           ),
         ),

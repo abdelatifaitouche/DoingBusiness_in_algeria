@@ -6,16 +6,18 @@ class ArticleModel {
   final String blog;
   final String imageUrl;
   final String categoryId;
+  final String pdfLink;
 
   ArticleModel(
       {required this.id,
       required this.titre,
       required this.blog,
       required this.imageUrl,
-      required this.categoryId});
+      required this.categoryId,
+      required this.pdfLink});
 
-  static ArticleModel empty() =>
-      ArticleModel(id: '', titre: '', blog: '', imageUrl: '', categoryId: '');
+  static ArticleModel empty() => ArticleModel(
+      id: '', titre: '', blog: '', imageUrl: '', categoryId: '', pdfLink: '');
 
   toJson() {
     return {
@@ -23,7 +25,8 @@ class ArticleModel {
       'titre': titre,
       'blog': blog,
       'image': imageUrl,
-      'categoryId': categoryId
+      'categoryId': categoryId,
+      'pdfLink': pdfLink
     };
   }
 
@@ -36,7 +39,8 @@ class ArticleModel {
           titre: data['titre'] ?? '',
           blog: data['blog'] ?? '',
           imageUrl: data['image'] ?? "",
-          categoryId: data['category'] ?? "");
+          categoryId: data['category'] ?? "",
+          pdfLink: data['pdfLink'] ?? "");
     } else {
       return ArticleModel.empty();
     }
