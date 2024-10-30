@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "503441830389",
+    "project_id": "doingbusinessbygrantthornton",
+    "storage_bucket": "doingbusinessbygrantthornton.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503441830389:android:6f27a2e50f8feb8780f0bc",
+        "android_client_info": {
+          "package_name": "com.example.doingbusiness"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJ-Z93bhMVu9GSzHbKGYgoQKRGjdanJw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
