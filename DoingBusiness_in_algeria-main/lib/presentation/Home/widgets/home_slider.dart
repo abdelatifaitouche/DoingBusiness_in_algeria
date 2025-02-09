@@ -23,7 +23,7 @@ class HomeSlider extends StatelessWidget {
                 viewportFraction: 1,
                 enlargeFactor: 0.5,
                 autoPlay: true),
-            itemCount: controller.featuredArticles.length,
+            itemCount: 3,
             itemBuilder:
                 (BuildContext context, int itemIndex, int pageViewIndex) {
               final article = controller.featuredArticles[itemIndex];

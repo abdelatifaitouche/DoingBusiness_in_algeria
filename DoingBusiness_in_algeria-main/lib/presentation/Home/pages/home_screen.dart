@@ -2,6 +2,7 @@ import 'package:doingbusiness/presentation/Article/controllers/article_controlle
 import 'package:doingbusiness/presentation/Home/widgets/home_header.dart';
 import 'package:doingbusiness/presentation/Home/widgets/home_item.dart';
 import 'package:doingbusiness/presentation/Home/widgets/home_slider.dart';
+import 'package:doingbusiness/presentation/notifications/screens/notifications_screen.dart';
 import 'package:doingbusiness/utils/loaders/home_item_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,13 +16,16 @@ class HomeScreen extends StatelessWidget {
     final controller = Get.put(ArticleController());
 
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           title: HomeHeader(),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.notifications_active),
+              child: GestureDetector(
+                  onTap: () => Get.to(
+                        const NotificationsScreen(),
+                      ),
+                  child: Icon(Icons.notifications_active)),
             )
           ],
         ),
@@ -77,6 +81,7 @@ class HomeScreen extends StatelessWidget {
                       );
                     } else {
                       return ListView.builder(
+                        reverse: true,
                         itemCount: controller.featuredArticles.length,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),

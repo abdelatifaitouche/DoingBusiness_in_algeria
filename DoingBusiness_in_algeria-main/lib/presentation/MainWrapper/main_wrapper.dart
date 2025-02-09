@@ -1,11 +1,13 @@
 import 'package:doingbusiness/core/configs/theme/app_colors.dart';
 import 'package:doingbusiness/presentation/Home/pages/home_screen.dart';
 import 'package:doingbusiness/presentation/MainWrapper/controllers/mainwrapper_controller.dart';
+import 'package:doingbusiness/presentation/Profile/controller/profile_controller.dart';
 import 'package:doingbusiness/presentation/Profile/pages/profile_screen.dart';
 import 'package:doingbusiness/presentation/explorer/pages/explorer_screen.dart';
 import 'package:doingbusiness/presentation/saved/pages/saved_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:doingbusiness/core/configs/theme/app_theme.dart';
 import 'package:get/get.dart';
 
 class MainWrapper extends StatelessWidget {
@@ -15,6 +17,7 @@ class MainWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileController = Get.put(ProfileController());
     return Scaffold(
         extendBody: true,
         body: PageView(
@@ -24,45 +27,49 @@ class MainWrapper extends StatelessWidget {
           children: const [
             HomeScreen(),
             ExplorerScreen(),
-            SavedScreen(),
+            //SavedScreen(),
             ProfileScreen()
           ],
         ),
         bottomNavigationBar: SafeArea(
-          child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-              padding: EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      offset: Offset(0, 20),
-                      blurRadius: 10)
-                ],
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
-                ),
-              ),
-              child: Obx(
-                () => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _bottomAppBarItem(context,
-                        icon: Icons.home_outlined, page: 0, label: "Home"),
-                    _bottomAppBarItem(context,
-                        icon: Icons.gps_fixed_outlined,
-                        page: 1,
-                        label: "Dsicover"),
-                    _bottomAppBarItem(context,
-                        icon: Icons.bookmark, page: 2, label: "Saved"),
-                    _bottomAppBarItem(context,
-                        icon: Icons.person_outline_outlined,
-                        page: 3,
-                        label: "Profile"),
+          child: Obx(
+            () => Container(
+                margin: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        offset: Offset(0, 20),
+                        blurRadius: 10)
                   ],
+                  color: profileController.isDarkMode.value
+                      ? Color.fromARGB(255, 85, 3, 120)
+                      : Colors.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
                 ),
-              )),
+                child: Obx(
+                  () => Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _bottomAppBarItem(context,
+                          icon: Icons.home_outlined, page: 0, label: "Home"),
+                      _bottomAppBarItem(context,
+                          icon: Icons.gps_fixed_outlined,
+                          page: 1,
+                          label: "Dsicover"),
+                      /*_bottomAppBarItem(context,
+                          icon: Icons.bookmark, page: 2, label: "Saved"),*/
+                      _bottomAppBarItem(context,
+                          icon: Icons.person_outline_outlined,
+                          page: 2,
+                          label: "Profile"),
+                    ],
+                  ),
+                )),
+          ),
         ));
   }
 

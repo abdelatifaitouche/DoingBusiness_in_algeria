@@ -1,22 +1,12 @@
-import 'dart:developer'; //here is for to get token
-
-import 'package:firebase_core/firebase_core.dart';
+import 'package:doingbusiness/utils/services/notification_repository.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 import 'package:get/get.dart';
-import 'package:grock/grock.dart';
 
-class NotificationController extends GetxController {
+class NotificationController {
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
-
-  @override
-  void onInit() {
-    super.onInit();
-    _initializeFirebaseMessaging();
-  }
-
-  void _initializeFirebaseMessaging() async {
+  final controller = Get.put(LocalNotification());
+  void initializeFirebaseMessaging() async {
     // Request permission for iOS
     NotificationSettings settings = await _messaging.requestPermission(
       alert: true,
@@ -46,7 +36,7 @@ class NotificationController extends GetxController {
       if (message.data.isNotEmpty) {
         print('Data: ${message.data}');
       }
-      // Show a dialog or alert
+
       Get.snackbar(
         message.notification!.title ?? "Notification",
         message.notification!.body ?? "You have a new message",

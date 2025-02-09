@@ -3,6 +3,7 @@ import 'package:doingbusiness/presentation/auth/pages/email_verification.dart';
 import 'package:doingbusiness/presentation/auth/pages/login_screen.dart';
 import 'package:doingbusiness/presentation/intro/pages/intro_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -77,6 +78,16 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+  //Forgot password logic
+
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      throw 'something went wrong';
+    }
+  }
+
   //logout function
   Future<void> logout() async {
     try {
@@ -84,6 +95,16 @@ class AuthenticationRepository extends GetxController {
       Get.offAll(LoginScreen());
     } catch (e) {
       throw e.toString();
+    }
+  }
+
+  Future<void> deleteUserAccount() async {
+    try {
+      await FirebaseAuth.instance.currentUser?.delete();
+      await FirebaseAuth.instance.currentUser?.reauthenticateWithCredential;
+      return logout();
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

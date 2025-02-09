@@ -1,3 +1,4 @@
+import 'package:doingbusiness/presentation/Article/controllers/article_controller.dart';
 import 'package:doingbusiness/presentation/Article/models/article_model.dart';
 import 'package:doingbusiness/presentation/saved/controllers/saved_controller.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,8 @@ class ArticleBody extends StatelessWidget {
   final ArticleModel article;
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SavedController());
+    //final controller = Get.put(SavedController());
+    final articleController = Get.put(ArticleController());
     return Padding(
       padding: EdgeInsets.all(20.0),
       child: Column(
@@ -19,6 +21,7 @@ class ArticleBody extends StatelessWidget {
               Row(
                 children: [
                   CircleAvatar(
+                    backgroundColor: Colors.transparent,
                     backgroundImage: AssetImage('assets/images/logo_gt.png'),
                   ),
                   SizedBox(
@@ -27,39 +30,35 @@ class ArticleBody extends StatelessWidget {
                   Text('Grant thornton',
                       maxLines: 2,
                       style: TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                          height: 1.1,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black)),
+                        overflow: TextOverflow.ellipsis,
+                        height: 1.1,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      )),
                 ],
-              ),
+              ), /*
               GestureDetector(
                 onTap: () {
-                  if (controller.checkIfSaved(article.id)) {
-                    controller.unsaveArticle(article.id);
-                  } else {
-                    controller.saveArticle(article.id);
-                  }
+                  print('saving');
                 },
-                child: Obx(
-                  () => Icon(
-                    controller.checkIfSaved(article.id)
-                        ? Icons.bookmark_added
-                        : Icons.bookmark_add,
-                    size: 30,
-                  ),
+                child: Icon(
+                  Icons.bookmark_add,
+                  size: 30,
                 ),
-              ),
+              ),*/
             ],
           ),
           SizedBox(
             height: 16,
           ),
-          Text(
-            article.titre,
-            textAlign: TextAlign.justify,
-          )
+          articleController.isLoading.value
+              ? Text('loading....')
+              : Text(
+                  article.blog,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                      fontSize: articleController.fontSizeValue.value),
+                ),
         ],
       ),
     );

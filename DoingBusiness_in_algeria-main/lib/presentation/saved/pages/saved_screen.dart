@@ -11,7 +11,6 @@ class SavedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final controller = Get.put(SavedController());
     final articleController = Get.put(ArticleController());
     return Scaffold(
       body: SingleChildScrollView(
@@ -23,14 +22,12 @@ class SavedScreen extends StatelessWidget {
               children: [
                 const Text('Saved',
                     style: TextStyle(
-                      color: Colors.black,
                       fontSize: 35,
                       fontWeight: FontWeight.w700,
                     )),
                 const Text(
                   'Explore your saved Articles',
                   style: TextStyle(
-                    color: Colors.black45,
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                   ),
@@ -38,11 +35,12 @@ class SavedScreen extends StatelessWidget {
                 SizedBox(
                   height: size.height * 0.03,
                 ),
+                /*
                 Obx(
                   () => ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: controller.savedArticles.length,
+                      itemCount: 5,
                       itemBuilder: (BuildContext context, index) {
                         final articleId = controller.savedArticles[index];
                         final article =
@@ -51,7 +49,7 @@ class SavedScreen extends StatelessWidget {
                         );
                         return HomeItem(article: article.first);
                       }),
-                )
+                )*/
               ],
             ),
           ),

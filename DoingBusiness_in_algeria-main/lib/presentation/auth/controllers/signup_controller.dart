@@ -28,17 +28,23 @@ class SignUpController extends GetxController {
       //check for internet connection
       final isConncted = await NetworkManager.instance.isConnected();
       if (!isConncted) {
+        FullScreenLoader.stopLoading();
+
         return;
       }
 
       //Form validation
       if (!signupFormKey.currentState!.validate()) {
+        FullScreenLoader.stopLoading();
+
         return;
       }
 
       //privacy policy check
 
       if (!agreeTerms.value) {
+        FullScreenLoader.stopLoading();
+
         Loaders.warrningSnackBar(
             title: 'Accept pirvacy policy',
             message:
@@ -51,7 +57,6 @@ class SignUpController extends GetxController {
       final usercredentials = await AuthenticationRepository.instance
           .registerWithEmailAndPassword(
               email.text.trim(), password.text.trim());
-      print('user saved');
       // save the user record
       final user = UserModel(
           id: usercredentials.user!.uid,
@@ -60,7 +65,7 @@ class SignUpController extends GetxController {
 
       final userReposistory = Get.put(UserRepository());
       await userReposistory.saveUserRecord(user);
-      print('user crated succefuly');
+
       FullScreenLoader.stopLoading();
 
       Loaders.successSnackBar(

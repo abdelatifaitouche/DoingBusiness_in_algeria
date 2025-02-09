@@ -26,7 +26,6 @@ class HomeHeader extends StatelessWidget {
               "Welcome",
               style: TextStyle(
                 fontWeight: FontWeight.w400,
-                color: Colors.black,
                 height: 1.02,
                 fontSize: 14,
               ),
@@ -35,13 +34,17 @@ class HomeHeader extends StatelessWidget {
               if (controller.profileLoading.value) {
                 return CustomShimmer(width: 60, height: 15);
               } else {
-                return Text(
-                  controller.user.value.username,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    color: Colors.black,
-                    height: 1.02,
-                    fontSize: 20,
+                return Container(
+                  width: 100,
+                  child: Text(
+                    controller.user.value.username,
+                    maxLines: 1,
+                    style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      fontWeight: FontWeight.w900,
+                      height: 1.02,
+                      fontSize: 20,
+                    ),
                   ),
                 );
               }

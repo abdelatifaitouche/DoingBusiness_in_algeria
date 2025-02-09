@@ -13,6 +13,7 @@ class ArticleRepository extends GetxController {
   Future<List<ArticleModel>> getFeaturedArticles() async {
     try {
       final snapshot = await _db.collection('Articles').get();
+      print('fetching from firebase');
 
       // return a list of articles
 

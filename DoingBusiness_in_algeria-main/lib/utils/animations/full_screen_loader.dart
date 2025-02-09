@@ -9,19 +9,21 @@ class FullScreenLoader {
       barrierDismissible: false,
       builder: (_) => PopScope(
         canPop: false,
-        child: Container(
-          color: Colors.white,
-          width: double.infinity,
-          height: double.infinity,
-          child: Column(children: [
-            const SizedBox(
-              height: 250,
-            ),
-            AnimationLoader(
-              text: text,
-              animation: animation,
-            )
-          ]),
+        child: Center(
+          child: Container(
+            color: Colors.white,
+            width: double.infinity,
+            height: double.infinity,
+            child: Column(children: [
+              const SizedBox(
+                height: 100,
+              ),
+              AnimationLoader(
+                text: text,
+                animation: animation,
+              )
+            ]),
+          ),
         ),
       ),
     );

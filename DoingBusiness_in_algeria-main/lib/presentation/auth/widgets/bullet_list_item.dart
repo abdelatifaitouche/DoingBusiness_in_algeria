@@ -25,7 +25,6 @@ class BulletItem extends StatelessWidget {
                 textAlign: TextAlign.left,
                 softWrap: true,
                 style: TextStyle(
-                  color: Colors.black.withOpacity(0.6),
                   height: 1.05,
                 ),
               ),

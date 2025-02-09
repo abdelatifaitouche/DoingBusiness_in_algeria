@@ -15,12 +15,11 @@ class SignUpScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 60,
-              horizontal: 40,
+            padding: EdgeInsets.symmetric(
+              vertical: size.height * 0.04,
+              horizontal: size.width * 0.06,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +42,6 @@ class SignUpScreen extends StatelessWidget {
                             "Welcome to",
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
-                              color: Colors.black45,
                               height: 1.02,
                               fontSize: 16,
                             ),
@@ -52,7 +50,6 @@ class SignUpScreen extends StatelessWidget {
                             "Doing Business",
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
-                              color: Colors.black,
                               height: 1.02,
                               fontSize: 20,
                             ),
@@ -62,20 +59,19 @@ class SignUpScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 50,
+                SizedBox(
+                  height: size.height * 0.06,
                 ),
                 Text(
                   "Créer votre compte ",
                   style: TextStyle(
                     fontWeight: FontWeight.w300,
-                    color: Colors.black,
                     height: 1.02,
                     fontSize: 25,
                   ),
                 ),
-                const SizedBox(
-                  height: 60,
+                SizedBox(
+                  height: size.height * 0.06,
                 ),
                 Form(
                   key: controller.signupFormKey,
@@ -88,8 +84,8 @@ class SignUpScreen extends StatelessWidget {
                           controller: controller.username,
                           decoration: const InputDecoration(
                               prefixIcon: Icon(Icons.person))),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: size.height * 0.02,
                       ),
                       TextFormField(
                         validator: (value) =>
@@ -99,8 +95,8 @@ class SignUpScreen extends StatelessWidget {
                           prefixIcon: Icon(Icons.email),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: size.height * 0.02,
                       ),
                       Obx(
                         () => TextFormField(
@@ -119,8 +115,8 @@ class SignUpScreen extends StatelessWidget {
                               prefixIcon: Icon(Icons.lock),
                             )),
                       ),
-                      const SizedBox(
-                        height: 35,
+                      SizedBox(
+                        height: size.height * 0.035,
                       ),
                       Row(
                         children: [
@@ -142,8 +138,8 @@ class SignUpScreen extends StatelessWidget {
                                 width: size.width * 0.6,
                                 child: RichText(
                                   text: TextSpan(
+                                    style: TextStyle(color: Colors.grey),
                                     text: "J'ai lu et j'accepte les ",
-                                    style: TextStyle(color: Colors.black),
                                     children: const <TextSpan>[
                                       TextSpan(
                                           text: 'Politiques de confidentialité',
@@ -155,8 +151,8 @@ class SignUpScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 35,
+                      SizedBox(
+                        height: size.height * 0.035,
                       ),
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -175,38 +171,40 @@ class SignUpScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 50,
+                SizedBox(
+                  height: size.height * 0.05,
                 ),
-                Row(
-                  children: [
-                    const Text(
-                      "Vous avez deja un compte?",
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                        height: 1.02,
-                        fontSize: 14,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    GestureDetector(
-                      onTap: () => Get.to(LoginScreen()),
-                      child: const Text(
-                        "Connectez vous!!",
+                Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Vous avez deja un compte?",
                         textAlign: TextAlign.right,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.primaryLight,
+                          fontWeight: FontWeight.w500,
                           height: 1.02,
                           fontSize: 14,
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        width: 5,
+                      ),
+                      GestureDetector(
+                        onTap: () => Get.to(LoginScreen()),
+                        child: const Text(
+                          "Connectez vous!!",
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primaryLight,
+                            height: 1.02,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

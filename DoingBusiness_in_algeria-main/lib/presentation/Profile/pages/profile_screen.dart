@@ -1,9 +1,15 @@
 import 'package:doingbusiness/core/configs/theme/app_colors.dart';
+import 'package:doingbusiness/presentation/Profile/controller/profile_controller.dart';
+import 'package:doingbusiness/presentation/Profile/pages/change_password_screen.dart';
+import 'package:doingbusiness/presentation/Profile/pages/delete_user_account.dart';
+import 'package:doingbusiness/presentation/Profile/pages/update_font_page.dart';
 import 'package:doingbusiness/presentation/Profile/widgets/info_widget.dart';
 import 'package:doingbusiness/presentation/Profile/widgets/profile_bar.dart';
 import 'package:doingbusiness/presentation/auth/controllers/authentication_repository.dart';
 import 'package:doingbusiness/presentation/auth/controllers/user_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -12,6 +18,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final userController = UserController.instance;
+    final profileController = Get.put(ProfileController());
     return Scaffold(
         body: SingleChildScrollView(
       child: SafeArea(
@@ -49,12 +56,18 @@ class ProfileScreen extends StatelessWidget {
                       SizedBox(
                         height: size.height * 0.01,
                       ),
-                      Text(
-                        userController.user.value.username,
-                        style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.1),
+                      Container(
+                        width: 200,
+                        child: Text(
+                          userController.user.value.username,
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.1),
+                        ),
                       ),
                     ],
                   ),
@@ -67,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
                   height: size.height * 0.03,
                 ),
                 Text(
-                  'Account Informations',
+                  'Account Settings',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
@@ -80,6 +93,50 @@ class ProfileScreen extends StatelessWidget {
                   widgetTitle: 'email',
                 ),
                 SizedBox(
+                  height: size.height * 0.02,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InfoWidget(
+                      widgetColor: AppColors.warrningOrange,
+                      widgetIcon: Icons.lock_outline_rounded,
+                      widgetText: "*********",
+                      widgetTitle: 'Change password',
+                    ),
+                    GestureDetector(
+                      onTap: () => Get.to(ChangePasswordScreen()),
+                      child: Icon(
+                        Icons.arrow_circle_right_rounded,
+                        size: 30,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InfoWidget(
+                      widgetColor: AppColors.dangerRed,
+                      widgetIcon: Icons.lock_outline_rounded,
+                      widgetText: "miss out all the info",
+                      widgetTitle: 'Delete your account',
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(DeleteUserAccount());
+                      },
+                      child: Icon(
+                        Icons.arrow_circle_right_rounded,
+                        size: 30,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
                   height: size.height * 0.03,
                 ),
                 Text(
@@ -89,11 +146,54 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   height: size.height * 0.01,
                 ),
-                InfoWidget(
-                  widgetColor: AppColors.primaryLight,
-                  widgetIcon: Icons.light_mode,
-                  widgetText: 'Light',
-                  widgetTitle: 'light Mode',
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Obx(
+                      () => InfoWidget(
+                        widgetColor: AppColors.primaryLight,
+                        widgetIcon: Icons.light_mode,
+                        widgetText: profileController.isDarkMode.value
+                            ? 'Dark'
+                            : 'Light',
+                        widgetTitle: 'Screen Mode',
+                      ),
+                    ),
+                    Obx(
+                      () => CupertinoSwitch(
+                        activeColor: AppColors.primaryDark,
+                        value: profileController.isDarkMode.value,
+                        onChanged: (value) {
+                          profileController.isDarkMode.value = value;
+                          print(value);
+                          profileController.darkModeSwitch(value);
+                        },
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InfoWidget(
+                      widgetColor: AppColors.primaryLight,
+                      widgetIcon: Icons.lock_outline_rounded,
+                      widgetText: "enhance readability",
+                      widgetTitle: 'Font Size',
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(UpdateFontPage());
+                      },
+                      child: Icon(
+                        Icons.change_circle_outlined,
+                        size: 30,
+                      ),
+                    )
+                  ],
                 ),
                 SizedBox(
                   height: 50,

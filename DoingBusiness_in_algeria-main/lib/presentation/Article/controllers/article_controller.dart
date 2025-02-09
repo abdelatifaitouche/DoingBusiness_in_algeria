@@ -1,7 +1,11 @@
+import 'dart:ffi';
+
 import 'package:doingbusiness/data/repository/article_repository.dart';
 import 'package:doingbusiness/presentation/Article/models/article_model.dart';
 import 'package:doingbusiness/utils/loaders/loaders.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ArticleController extends GetxController {
   static ArticleController get instance => Get.find();
@@ -15,11 +19,32 @@ class ArticleController extends GetxController {
   RxList<ArticleModel> filteredArticles = <ArticleModel>[].obs;
   RxBool selected = false.obs;
 
+  RxDouble fontSizeValue = 16.0.obs;
+
+  GetStorage _storage = GetStorage();
+
   @override
-  void onInit() {
+  void onInit() async {
     fetchFeaturedArticles();
+    await _storage.writeIfNull('fontsize', fontSizeValue);
     resetList();
     super.onInit();
+  }
+
+  /*
+   * Working on the saving system
+   * When clicking on the saving button, add the current article to the saved list
+   * at first the saved list is empty, and pushing into it (stack)
+   * 
+   * 
+   * 
+   */
+
+  saveFontSize(double fontsizeVal) async {
+    await _storage.write('fontsize', fontsizeVal);
+
+    Loaders.successSnackBar(title: "Success", message: 'Font size Updated');
+    print(_storage.read('fontsize'));
   }
 
   resetList() {
@@ -46,7 +71,7 @@ class ArticleController extends GetxController {
       //fetch articles
 
       final articles = await articleRepo.getFeaturedArticles();
-
+      print('update the fetching');
       //assign the articles
 
       featuredArticles.assignAll(articles);

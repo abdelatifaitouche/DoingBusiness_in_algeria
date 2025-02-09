@@ -106,14 +106,6 @@ class ArticleAppBar extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      Text('01 01 2025',
-                          maxLines: 2,
-                          style: TextStyle(
-                              overflow: TextOverflow.ellipsis,
-                              height: 1.1,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.grey)),
                     ],
                   ),
                 ],

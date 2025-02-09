@@ -21,7 +21,7 @@ class HomeItem extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: size.height * 0.01),
         width: double.infinity,
-        height: size.height * 0.12,
+        height: size.height * 0.13,
         child: Row(
           children: [
             Container(
@@ -43,6 +43,7 @@ class HomeItem extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
                     data.categories[int.parse(article.categoryId) - 1]['name']
@@ -60,11 +61,11 @@ class HomeItem extends StatelessWidget {
                       maxLines: 2,
                       article.titre,
                       style: TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                          height: 1.1,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black)),
+                        overflow: TextOverflow.ellipsis,
+                        height: 1.1,
+                        fontSize: 21,
+                        fontWeight: FontWeight.w600,
+                      )),
                 ),
                 SizedBox(
                   height: size.height * 0.01,

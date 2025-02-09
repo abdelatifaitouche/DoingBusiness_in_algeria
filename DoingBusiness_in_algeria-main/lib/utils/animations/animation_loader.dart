@@ -28,17 +28,6 @@ class AnimationLoader extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(
-            text,
-            style: TextStyle(
-              fontSize: 22,
-              color: Colors.black,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
           showAction
               ? SizedBox(
                   width: 250,

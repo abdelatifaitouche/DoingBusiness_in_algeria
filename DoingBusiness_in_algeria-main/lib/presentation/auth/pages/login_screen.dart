@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:doingbusiness/core/configs/theme/app_colors.dart';
+import 'package:doingbusiness/presentation/Profile/pages/email_sent.dart';
+import 'package:doingbusiness/presentation/Profile/pages/forgot_password_screen.dart';
 import 'package:doingbusiness/presentation/auth/controllers/signin_controller.dart';
 import 'package:doingbusiness/presentation/auth/pages/signup_screen.dart';
 import 'package:doingbusiness/utils/validators.dart';
@@ -184,28 +186,42 @@ class LoginScreen extends StatelessWidget {
                                         ),
                                       ),
                                       SizedBox(
+                                        height: size.height * 0.02,
+                                      ),
+                                      Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: GestureDetector(
+                                          onTap: () => Get.to(
+                                              const ForgotPasswordScreen()),
+                                          child: Text(
+                                              textAlign: TextAlign.right,
+                                              'Forget password ?'),
+                                        ),
+                                      ),
+                                      SizedBox(
                                         height: size.height * 0.04,
                                       ),
                                       ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                AppColors.primaryDark,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            minimumSize: const Size(260, 60),
-                                          ),
-                                          onPressed: () {
-                                            controller.signIn();
-                                          },
-                                          child: const Text(
-                                            "Login Now",
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                letterSpacing: 1.1,
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500),
-                                          ))
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              AppColors.primaryDark,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          minimumSize: const Size(260, 60),
+                                        ),
+                                        onPressed: () {
+                                          controller.signIn();
+                                        },
+                                        child: const Text(
+                                          "Login Now",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              letterSpacing: 1.1,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
